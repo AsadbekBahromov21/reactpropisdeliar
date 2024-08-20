@@ -2,8 +2,9 @@ import { useStateValue } from "@/context/Index";
 import React from "react";
 import { FaHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
-
+import { useNavigate } from "react-router-dom";
 const Products = ({ data, title }) => {
+  const navigate = useNavigate();
   const [_, dispatch] = useStateValue();
   let items = data?.map((product) => (
     <div className="border p-3 mb-7 relative" key={product.id}>
@@ -31,6 +32,7 @@ const Products = ({ data, title }) => {
         <button
           className="border bg-lime-600 py-1 text-[#fff] "
           onClick={() => {
+            navigate(`/Cart`);
             dispatch({ type: "CART", payload: product });
             toast.success("Tanlangan maxsulot qoshildi");
           }}
